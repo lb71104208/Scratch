@@ -9,8 +9,6 @@ namespace Game
     {
         public static PlayerManager instance = null;
 
-        private int _playerStamina;
-
         private void Awake()
         {
             if (instance == null)

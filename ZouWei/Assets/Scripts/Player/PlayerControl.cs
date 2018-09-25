@@ -23,11 +23,13 @@ namespace Player
         private EPlayerMoveDirection _moveDirection = EPlayerMoveDirection.NONE;
         private Dictionary<EPlayerMoveDirection, Sprite> _idleSpriteDic;
         private SpriteRenderer _sprite;
+        private Player _player;
 
         private void Awake()
         {
             SetupIdleSpriteDictionary();
             _sprite = GetComponent<SpriteRenderer>();
+            _player = GetComponent<Player>();
         }
 
         private void SetupIdleSpriteDictionary()
@@ -105,8 +107,13 @@ namespace Player
 
         private void Move(float h, float v)
         {
+            if(_player.IsRunOutOfStamina())
+            {
+                return;
+            }
             Vector3 offset = new Vector2(h, v) * Time.deltaTime * 2;
             transform.position += offset;
+            _player.ConsumeStamina(offset.magnitude);
         }
 
         private void OnEnterIdleState(EPlayerMoveDirection faceDir)

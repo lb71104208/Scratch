@@ -6,14 +6,8 @@ namespace Player
 {
     public class PlayerProperty : MonoBehaviour
     {
-        private int maxStamina = 10;
+        public int MaxStamina { get; set; }
 
-        private int curStamina = 0;
-
-        private void Start()
-        {
-            curStamina = maxStamina;
-        }
     }
 }
 
