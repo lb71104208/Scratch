@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Player;
-using Common;
 
-namespace Game
+namespace Common
 {
-    public class PlayerManager : Singleton<PlayerManager>
+    public class EventManager : Singleton<EventManager>
     {
 
     }

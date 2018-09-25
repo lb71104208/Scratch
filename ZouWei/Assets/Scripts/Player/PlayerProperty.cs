@@ -6,8 +6,12 @@ namespace Player
 {
     public class PlayerProperty : MonoBehaviour
     {
-        public int MaxStamina { get; set; }
+        public int MaxStamina { 
+            get { return _maxStamina; }
+            set { _maxStamina = value; }
+        }
 
+        private int _maxStamina = 10;
     }
 }
 

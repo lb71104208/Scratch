@@ -43,6 +43,10 @@ namespace Player
         
         private void Update()
         {
+            if (_player.IsRunOutOfStamina())
+            {
+                return;
+            }
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
@@ -51,8 +55,7 @@ namespace Player
             {
                 if(direction == EPlayerMoveDirection.NONE)
                 {
-                    OnEnterIdleState(_moveDirection);
-                    _moveDirection = EPlayerMoveDirection.NONE;
+                    Stop();
                 }
                 else
                 {
@@ -107,13 +110,15 @@ namespace Player
 
         private void Move(float h, float v)
         {
-            if(_player.IsRunOutOfStamina())
-            {
-                return;
-            }
             Vector3 offset = new Vector2(h, v) * Time.deltaTime * 2;
             transform.position += offset;
             _player.ConsumeStamina(offset.magnitude);
+        }
+
+        public void Stop()
+        {
+            OnEnterIdleState(_moveDirection);
+            _moveDirection = EPlayerMoveDirection.NONE;
         }
 
         private void OnEnterIdleState(EPlayerMoveDirection faceDir)

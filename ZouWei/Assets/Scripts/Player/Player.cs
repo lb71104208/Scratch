@@ -38,8 +38,17 @@ namespace Player
                 int consume = (int)STAMINA_CONSUME_UNIT * _staminaCostPerUnit;
                 _curStamina = _curStamina - consume;
 
+                if(_curStamina <= 0)
+                {
+                    OnRunOutOfStamina();
+                }
                 _distanceCounter = 0;
             }
+        }
+
+        private void OnRunOutOfStamina()
+        {
+            _playerControl.Stop();
         }
 
         public bool IsRunOutOfStamina()
