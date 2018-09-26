@@ -1,14 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UI;
 
 namespace Player
 {
     public class Player : MonoBehaviour
     {
+        public UIPlayerStatus playerStatusHud;
+
         private PlayerControl _playerControl;
         private PlayerProperty _playerProperty;
 
+        public int CurrentStamina
+        {
+            get { return _curStamina; }
+            set
+            {
+                _curStamina = value;
+                playerStatusHud.UpdateStamina(_curStamina);
+            }
+        }
         private int _curStamina;
         private int _staminaCostPerUnit = 1;
         private float _distanceCounter;
@@ -22,7 +32,7 @@ namespace Player
         // Use this for initialization
         void Start()
         {
-            _curStamina = _playerProperty.MaxStamina;
+            CurrentStamina = _playerProperty.MaxStamina;
             _distanceCounter = 0;
         }
 
@@ -36,7 +46,7 @@ namespace Player
             if(_distanceCounter > STAMINA_CONSUME_UNIT)
             {
                 int consume = (int)STAMINA_CONSUME_UNIT * _staminaCostPerUnit;
-                _curStamina = _curStamina - consume;
+                CurrentStamina = _curStamina - consume;
 
                 if(_curStamina <= 0)
                 {

@@ -8,6 +8,11 @@ namespace UI
     public class UIPlayerStatus : MonoBehaviour
     {
         public Text stamina;
+
+        public void UpdateStamina(int v)
+        {
+            stamina.text = v.ToString();
+        }
     }
 }
 
