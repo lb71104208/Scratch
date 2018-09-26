@@ -7,9 +7,14 @@ namespace Game
 {
     public class GamaManager : SingletonMonobehaviour<GamaManager>
     {
-        private void InitGame()
+        void Awake()
         {
-            
+            PlayerManager.Instance.Initialize();
+        }
+
+        public void NextTurn()
+        {
+            PlayerManager.Instance.RefreshPlayerStatus();
         }
     }
 }

@@ -66,6 +66,11 @@ namespace Player
             return _curStamina <= 0;
         }
 
+        public void RestoreState()
+        {
+            CurrentStamina = _playerProperty.MaxStamina;
+        }
+
     }
 }
 
