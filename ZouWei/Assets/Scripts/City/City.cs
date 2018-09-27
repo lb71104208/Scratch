@@ -6,17 +6,12 @@ namespace Game
 {
     public class City : MonoBehaviour
     {
-
-        // Use this for initialization
-        void Start()
+        private void OnTriggerEnter2D(Collider2D other)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Debug.Log("Enters city!");
+            }
         }
     }
 }

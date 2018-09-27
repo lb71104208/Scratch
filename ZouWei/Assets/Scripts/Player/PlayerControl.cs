@@ -137,7 +137,7 @@ namespace Player
             animator.SetInteger("MoveDirection", 0);
 
             animator.SetInteger("FaceDirection", (int)faceDir);
-            Debug.Log("faceDir" + faceDir);
+            //Debug.Log("faceDir" + faceDir);
             //_sprite.sprite = _idleSpriteDic[faceDir];
             
             //animator.StopPlayback();
