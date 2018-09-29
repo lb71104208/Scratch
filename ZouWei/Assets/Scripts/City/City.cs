@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Common;
 
 namespace Game
 {
@@ -11,6 +10,7 @@ namespace Game
             if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 Debug.Log("Enters city!");
+                LevelManager.Instance.EnterLevel(ELevel.City);
             }
         }
     }
