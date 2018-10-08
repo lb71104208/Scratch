@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Common
+﻿namespace Common
 {
     public enum ELevel
     {
         World,
-        City
+        City,
+        Battle
     }
 
     public class CommonDefine
     {
-
     }
 }

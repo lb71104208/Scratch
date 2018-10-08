@@ -10,7 +10,7 @@ namespace Game
             if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 Debug.Log("Enters city!");
-                LevelManager.Instance.EnterLevel(ELevel.City);
+                LevelManager.Instance.EnterLevel(ELevel.Battle);
             }
         }
     }

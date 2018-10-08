@@ -16,7 +16,11 @@ namespace Player
             set
             {
                 _curStamina = value;
-                playerStatusHud.UpdateStamina(_curStamina);
+                if(playerStatusHud!= null)
+                {
+                    playerStatusHud.UpdateStamina(_curStamina);
+                }
+                
             }
         }
         private int _curStamina;
@@ -69,6 +73,11 @@ namespace Player
         public void RestoreState()
         {
             CurrentStamina = _playerProperty.MaxStamina;
+        }
+
+        public void OnEnterScene(int sceneIndex)
+        {
+            _playerControl.OnEnterScene(sceneIndex);
         }
 
     }

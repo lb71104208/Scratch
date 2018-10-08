@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Common;
 
 namespace Player
 {
@@ -11,6 +12,12 @@ namespace Player
         RIGHT,
         UP,
         DOWN
+    }
+
+    enum EPlayerControlMode
+    {
+        KEYBOARD,
+        MOUSE
     }
 
     public class PlayerControl : MonoBehaviour
@@ -24,6 +31,7 @@ namespace Player
         private Dictionary<EPlayerMoveDirection, Sprite> _idleSpriteDic;
         private SpriteRenderer _sprite;
         private Player _player;
+        private EPlayerControlMode _controlMode = EPlayerControlMode.KEYBOARD;
 
         private void Awake()
         {
@@ -43,6 +51,14 @@ namespace Player
         
         private void Update()
         {
+            if(_controlMode == EPlayerControlMode.KEYBOARD)
+            {
+                OnKeyboardInput();
+            }
+        }
+
+        private void OnKeyboardInput()
+        {
             if (_player.IsRunOutOfStamina())
             {
                 return;
@@ -51,9 +67,9 @@ namespace Player
             float v = Input.GetAxis("Vertical");
 
             EPlayerMoveDirection direction = DetermineDirection(h, v);
-            if(direction != _moveDirection)
+            if (direction != _moveDirection)
             {
-                if(direction == EPlayerMoveDirection.NONE)
+                if (direction == EPlayerMoveDirection.NONE)
                 {
                     Stop();
                 }
@@ -62,7 +78,7 @@ namespace Player
                     _moveDirection = direction;
                     PlayMoveAnimation();
                 }
-                
+
             }
 
             Move(h, v);
@@ -137,10 +153,35 @@ namespace Player
             animator.SetInteger("MoveDirection", 0);
 
             animator.SetInteger("FaceDirection", (int)faceDir);
-            //Debug.Log("faceDir" + faceDir);
-            //_sprite.sprite = _idleSpriteDic[faceDir];
-            
-            //animator.StopPlayback();
+        }
+
+        public void OnEnterScene(int sceneIndex)
+        {
+            ELevel level = (ELevel)sceneIndex;
+            SwitchControlMode(level);
+        }
+
+        private void SwitchControlMode(ELevel level)
+        {
+            switch(level)
+            {
+                case ELevel.World:
+                    _controlMode = EPlayerControlMode.KEYBOARD;
+                    break;
+
+                default:
+                    _controlMode = EPlayerControlMode.MOUSE;
+                    break;
+
+            }
+        }
+
+        private void OnMouseUp()
+        {
+           if(_controlMode == EPlayerControlMode.MOUSE)
+            {
+
+            }
         }
     }
 }
