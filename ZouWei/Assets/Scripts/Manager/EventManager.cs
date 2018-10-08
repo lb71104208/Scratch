@@ -11,8 +11,6 @@ namespace Common
         public void Initialize()
         {
             _actionDic = new Dictionary<string, Action<object>>();
-            AddListener("AAA", Method);
-            _actionDic["AAA"].Invoke(null);
         }
 
         public void AddListener(string eventName, Action<object> action)
@@ -22,13 +20,29 @@ namespace Common
                 Action<object> act =  default(Action<object>);
                 _actionDic.Add(eventName, act);
             }
+            _actionDic[eventName] -= action;
             _actionDic[eventName] += action;
         }
 
-        private void Method(object obj)
+        public void RemoveListener(string eventName, Action<object> action)
         {
-            Delegate[] list =  _actionDic["AAA"].GetInvocationList();
+            if (_actionDic.ContainsKey(eventName))
+            {
+                _actionDic[eventName] -= action;
+            }
         }
+
+        public void SendEvent(string eventName, object obj)
+        {
+            if(_actionDic!= null)
+            {
+                if(_actionDic.ContainsKey(eventName))
+                {
+                    _actionDic[eventName].Invoke(obj);
+                }
+            }
+        }
+
 
     }
 }

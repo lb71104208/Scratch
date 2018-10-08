@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UI;
+using Common;
 
 namespace Player
 {
@@ -16,11 +17,7 @@ namespace Player
             set
             {
                 _curStamina = value;
-                if(playerStatusHud!= null)
-                {
-                    playerStatusHud.UpdateStamina(_curStamina);
-                }
-                
+                EventManager.Instance.SendEvent(EventName.PLAYER_STAMINA_CHANGE, _curStamina);
             }
         }
         private int _curStamina;

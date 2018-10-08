@@ -9,9 +9,9 @@ namespace Game
     {
         void Awake()
         {
-            PlayerManager.Instance.Initialize();
-            LevelManager.Instance.Initialize();
             EventManager.Instance.Initialize();
+            LevelManager.Instance.Initialize();
+            PlayerManager.Instance.Initialize();
         }
 
         public void NextTurn()
