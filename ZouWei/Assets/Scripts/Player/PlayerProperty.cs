@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player
+namespace MainPlayer
 {
     public class PlayerProperty : MonoBehaviour
     {

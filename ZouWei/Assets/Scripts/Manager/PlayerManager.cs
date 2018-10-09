@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using Common;
+using MainPlayer;
 
 namespace Game
 {
     public class PlayerManager : Singleton<PlayerManager>
     {
-        private Player.Player _player;
+        private Player _player;
+
+        public Player MainPlayer { get { return _player; } }
 
         public void Initialize()
         {
-            _player = GameObject.FindObjectOfType<Player.Player>();
+            _player = GameObject.FindObjectOfType<Player>();
         }
 
         public void RefreshPlayerStatus()
@@ -19,8 +22,7 @@ namespace Game
 
         public void OnEnterScene(int sceneIndex)
         {
-            Debug.Log("sceneIndex " + sceneIndex);
-            _player = GameObject.FindObjectOfType<Player.Player>();
+            _player = GameObject.FindObjectOfType<Player>();
             _player.OnEnterScene(sceneIndex);
         }
     }

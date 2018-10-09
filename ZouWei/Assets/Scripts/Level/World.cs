@@ -13,7 +13,7 @@ namespace Game
         private void OpenDefaultUI()
         {
             UIManager.Instance.OpenUI(UIName.UI_GAME_CONTROL);
-            UIManager.Instance.OpenUI(UIName.UI_PLAYER_STATUS);
+            UIManager.Instance.OpenUI(UIName.UI_PLAYER_STATUS, PlayerManager.Instance.MainPlayer);
         }
 
     }

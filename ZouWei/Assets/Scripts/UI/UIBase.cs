@@ -6,11 +6,11 @@ namespace UI
 {
     public class UIBase : MonoBehaviour
     {
-        protected List<string> ntfType;
+        protected List<string> ntfTypeList;
 
         private void Awake()
         {
-            ntfType = new List<string>();
+            ntfTypeList = new List<string>();
         }
 
         public virtual void OnCreate()
@@ -18,9 +18,14 @@ namespace UI
 
         }
 
+        public virtual void FillData(object data)
+        {
+
+        }
+
         public void RegistObserver()
         {
-            foreach (string ntf in ntfType)
+            foreach (string ntf in ntfTypeList)
             {
                 EventManager.Instance.AddObserver(ntf, this);
             }

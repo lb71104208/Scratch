@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Common;
 
-namespace Player
+namespace MainPlayer
 {
     public enum EPlayerMoveDirection
     {

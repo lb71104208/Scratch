@@ -2,7 +2,7 @@
 using UI;
 using Common;
 
-namespace Player
+namespace MainPlayer
 {
     public class Player : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace Player
             set
             {
                 _curStamina = value;
-                EventManager.Instance.SendEvent(EventName.PLAYER_STAMINA_CHANGE, _curStamina);
+                EventManager.Instance.SendNotification(NotificationType.PLAYER_STAMINA_CHANGE, _curStamina);
             }
         }
         private int _curStamina;

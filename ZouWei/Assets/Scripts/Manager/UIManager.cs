@@ -25,7 +25,7 @@ namespace UI
             _uiPrefabPathDic.Add(UIName.UI_GAME_CONTROL, "Prefabs/UI/UIGameControl");
         }
 
-        public void OpenUI(string uiName)
+        public void OpenUI(string uiName, object data = null)
         {
             if(_openedUIList.Contains(uiName))
             {
@@ -41,6 +41,7 @@ namespace UI
             UIBase ui = uiObj.GetComponent<UIBase>();
             ui.OnCreate();
             ui.RegistObserver();
+            ui.FillData(data);
 
             _openedUIList.Add(uiName);
         }

@@ -78,7 +78,11 @@ namespace Common
             {
                 foreach(UIBase ui in _ntfObserverDic[ntfType])
                 {
-                    ui.OnHandleNtf(ntfType, data);
+                    if(ui!= null)
+                    {
+                        ui.OnHandleNtf(ntfType, data);
+                    }
+                    
                 }
             }
         }
