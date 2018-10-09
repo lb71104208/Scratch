@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Common;
+﻿using Common;
+using UI;
 
 namespace Game
 {
@@ -12,6 +10,7 @@ namespace Game
             EventManager.Instance.Initialize();
             LevelManager.Instance.Initialize();
             PlayerManager.Instance.Initialize();
+            UIManager.Instance.Initialize();
         }
 
         public void NextTurn()

@@ -4,11 +4,11 @@ using Game;
 
 namespace UI
 {
-    public class UIGameControl : MonoBehaviour
+    public class UIGameControl : UIBase
     {
         public Button btnNextTurn;
 
-        private void Awake()
+        public override void OnCreate()
         {
             btnNextTurn.onClick.AddListener(OnBtnNextTurn);
         }

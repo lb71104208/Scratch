@@ -6,25 +6,16 @@ using Common;
 
 namespace UI
 {
-    public class UIPlayerStatus : MonoBehaviour
+    public class UIPlayerStatus : UIBase
     {
         public Text stamina;
-
-        void Awake()
-        {
-            EventManager.Instance.AddListener(EventName.PLAYER_STAMINA_CHANGE, OnPlayerStaminaChange);
-        }
 
         private void OnPlayerStaminaChange(object obj)
         {
             int v = (int)obj;
-            //stamina.text = v.ToString();
+            stamina.text = v.ToString();
         }
 
-        void OnDestroy()
-        {
-            EventManager.Instance.RemoveListener(EventName.PLAYER_STAMINA_CHANGE, OnPlayerStaminaChange);
-        }
     }
 }
 
