@@ -7,20 +7,17 @@ namespace Game
 {
     public class Map : MonoBehaviour
     {
-        Tilemap tilemapTerrain;
+        public Tilemap tilemap;
 
-        private void Awake()
-        {
-            tilemapTerrain = GetComponent<Tilemap>();
-        }
+        public MyTile _myTile;
 
         private void Start()
         {
-            Tile tile = tilemapTerrain.GetTile<Tile>(Vector3Int.zero);
-            TileData tileData;
-            //tile.GetTileData(Vector3Int.zero, tilemapTerrain, ref tileData);
+            //_myTile = ScriptableObject.CreateInstance<MyTile>();
+            //_myTile.tileSprite = sprite;
+            tilemap.SetTile(Vector3Int.zero, _myTile);
 
-            tilemapTerrain.RefreshAllTiles();
+            //tilemap.RefreshAllTiles();
         }
 
     }
