@@ -23,6 +23,7 @@ namespace UI
         {
             _uiPrefabPathDic.Add(UIName.UI_PLAYER_STATUS, "Prefabs/UI/UIPlayerStatus");
             _uiPrefabPathDic.Add(UIName.UI_GAME_CONTROL, "Prefabs/UI/UIGameControl");
+            _uiPrefabPathDic.Add(UIName.UI_CONTEXT_MENU, "Prefabs/UI/UIContextMenu");
         }
 
         public void OpenUI(string uiName, object data = null)
@@ -51,6 +52,28 @@ namespace UI
             GameObject uiObj = Resources.Load<GameObject>(path);
             uiObj = Instantiate(uiObj) as GameObject;
             return uiObj;
+        }
+
+        public void ShowContextMenu(GameObject attachObj,  object data)
+        {
+            string uiName = UIName.UI_CONTEXT_MENU;
+            if (_openedUIList.Contains(uiName))
+            {
+                return;
+            }
+
+            GameObject uiObj = LoadUI(_uiPrefabPathDic[uiName]);
+            uiObj.transform.SetParent(_canvas.transform);
+            Vector3 screenPoint = Camera.main.WorldToScreenPoint(attachObj.transform.position);
+            uiObj.transform.localPosition = screenPoint;
+            uiObj.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+
+            UIBase ui = uiObj.GetComponent<UIBase>();
+            ui.OnCreate();
+            ui.RegistObserver();
+            ui.FillData(data);
+
+            _openedUIList.Add(uiName);
         }
     }
 }

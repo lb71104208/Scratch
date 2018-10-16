@@ -26,5 +26,6 @@
     {
         public const string UI_PLAYER_STATUS = "ui_player_status";
         public const string UI_GAME_CONTROL = "ui_game_control";
+        public const string UI_CONTEXT_MENU = "ui_context_menu";
     }
 }

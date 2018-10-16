@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 548792182}
   - component: {fileID: 548792184}
   - component: {fileID: 548792183}
+  - component: {fileID: 548792185}
   m_Layer: 0
   m_Name: Tilemap_Terrain
   m_TagString: Untagged
@@ -1975,6 +1976,17 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!114 &548792185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548792181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6109656de2efffa44949786a2a8a583d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &556970535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1553422141
 Grid:
   m_ObjectHideFlags: 0
