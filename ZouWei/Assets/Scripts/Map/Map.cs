@@ -12,23 +12,25 @@ namespace Game
 
         public MyTile _myTile;
 
+        private Actor _actor;
+
         private void Start()
         {
-            //_myTile = ScriptableObject.CreateInstance<MyTile>();
-            //_myTile.tileSprite = sprite;
-            //tilemap.SetTile(Vector3Int.zero, _myTile);
-
-            //tilemap.RefreshAllTiles();
+            _actor = FindObjectOfType<Actor>();
+            ShowActorMovableTiles(_actor);
         }
 
-        public void GetMovableTiles(Vector3Int startPoint, int range)
+        public void GetMovableTiles(Vector3Int startPoint, int range, ref List<Vector3Int> tilePositions)
         {
-
+            tilePositions.Add(startPoint);
+            range--;
         }
 
         public void ShowActorMovableTiles(Actor actor)
         {
-
+            Vector3 position = actor.transform.position;
+            Vector3Int cellPosition = tilemap.WorldToCell(position);
+            tilemap.SetTile(cellPosition, _myTile);
         }
 
     }

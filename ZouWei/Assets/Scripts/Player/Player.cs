@@ -6,7 +6,6 @@ namespace MainPlayer
 {
     public class Player : MonoBehaviour
     {
-        public UIPlayerStatus playerStatusHud;
 
         private PlayerControl _playerControl;
         private PlayerProperty _playerProperty;
