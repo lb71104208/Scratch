@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BattleField;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -15,9 +16,19 @@ namespace Game
         {
             //_myTile = ScriptableObject.CreateInstance<MyTile>();
             //_myTile.tileSprite = sprite;
-            tilemap.SetTile(Vector3Int.zero, _myTile);
+            //tilemap.SetTile(Vector3Int.zero, _myTile);
 
             //tilemap.RefreshAllTiles();
+        }
+
+        public void GetMovableTiles(Vector3Int startPoint, int range)
+        {
+
+        }
+
+        public void ShowActorMovableTiles(Actor actor)
+        {
+
         }
 
     }
