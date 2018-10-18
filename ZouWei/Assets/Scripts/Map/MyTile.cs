@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 namespace Game
 {
-    [CreateAssetMenu]
     public class MyTile : TileBase
     {
         public Sprite tileSprite;
@@ -14,7 +13,11 @@ namespace Game
         {
             tileData.sprite = tileSprite;
         }
+
+        public virtual int GetTileMoveConsume()
+        {
+            return 1;
+        }
     }
 }
-
 

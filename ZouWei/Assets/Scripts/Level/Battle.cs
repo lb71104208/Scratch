@@ -9,9 +9,7 @@ namespace Game
 
         public override void OnEnter()
         {
-            Player player = PlayerManager.Instance.MainPlayer;
-            Actor actor = player.GetComponent<Actor>();
-            movementMap.ShowActorMovableTiles(actor);
+
         }
     }
 }

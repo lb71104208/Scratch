@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40f0f978baa157643a04429faa1401dd, type: 3}
-  m_Name: New My Tile
+  m_Name: MovableTile
   m_EditorClassIdentifier: 
   tileSprite: {fileID: 21300000, guid: 1862ea3e421671d4198ecb87bd3b2e37, type: 3}
