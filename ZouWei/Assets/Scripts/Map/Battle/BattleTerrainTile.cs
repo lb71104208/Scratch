@@ -22,9 +22,11 @@ namespace Game
         {
             switch(tileType)
             {
-                case EBattleTerrainTileType.GRASS:
                 case EBattleTerrainTileType.PLAIN:
                     return 1;
+
+                case EBattleTerrainTileType.GRASS:
+                    return 2;
 
                 case EBattleTerrainTileType.MOUNTAIN:
                 case EBattleTerrainTileType.WATER:

@@ -66,7 +66,6 @@ namespace Game
                 ret.Add(downPoint);
             }
 
-
             return ret;
         }
 

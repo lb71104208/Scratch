@@ -21,10 +21,10 @@ namespace Game
 
             Vector3Int cellPosition = new Vector3Int(0, 0, 0);
 
-            int range = 1;
+            int range = 2;
             Dictionary<Vector3Int, int> movableTiles = new Dictionary<Vector3Int, int>();
             movableTiles.Add(cellPosition, range);
-            Map.GetMovableTiles(tilemap, cellPosition, range, ref movableTiles);
+            Map.GetCanReachTiles(tilemap, cellPosition, range, ref movableTiles);
 
             foreach(Vector3Int point in movableTiles.Keys)
             {
