@@ -30,7 +30,6 @@ namespace Game
                 case EBattleTerrainTileType.WATER:
                     return -1;
 
-
                 default:
                     return 1;
                     

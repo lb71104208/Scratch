@@ -5,14 +5,16 @@ using UnityEngine.Tilemaps;
 
 namespace Game
 {
-    public class MyTile : TileBase
-    {
-        public Sprite tileSprite;
+    public class MyTile : Tile
+    { 
+        public Sprite replaceSprite;
 
-        public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
-        {
-            tileData.sprite = tileSprite;
-        }
+        //public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
+        //{
+        //    //base.GetTileData(position, tilemap, ref tileData);
+        //    tileData.sprite = sprite;
+        //    tileData.color = Color.white;
+        //}
 
         public virtual int GetTileMoveConsume()
         {
