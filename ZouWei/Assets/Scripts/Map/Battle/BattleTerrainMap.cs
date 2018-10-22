@@ -35,6 +35,17 @@ namespace Game
                 }
             }
         }
+
+        private void OnMouseOver()
+        {
+            if (Input.GetMouseButtonUp(1))
+            {
+                Vector3 mousePosition = Input.mousePosition;
+                Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+                Debug.Log(cellPosition + "cellPosition");
+            }
+
+        }
     }
 }
 
