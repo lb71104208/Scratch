@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class UIContextMenu : MonoBehaviour
+    public class UIContextMenu : UIBase
     {
 
         // Use this for initialization

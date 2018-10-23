@@ -54,7 +54,7 @@ namespace UI
             return uiObj;
         }
 
-        public void ShowContextMenu(GameObject attachObj,  object data)
+        public void ShowContextMenu(Vector3 position,  object data)
         {
             string uiName = UIName.UI_CONTEXT_MENU;
             if (_openedUIList.Contains(uiName))
@@ -64,9 +64,8 @@ namespace UI
 
             GameObject uiObj = LoadUI(_uiPrefabPathDic[uiName]);
             uiObj.transform.SetParent(_canvas.transform);
-            Vector3 screenPoint = Camera.main.WorldToScreenPoint(attachObj.transform.position);
-            uiObj.transform.localPosition = screenPoint;
-            uiObj.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+       
+            uiObj.transform.localPosition = position;
 
             UIBase ui = uiObj.GetComponent<UIBase>();
             ui.OnCreate();

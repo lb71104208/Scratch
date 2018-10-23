@@ -1,6 +1,7 @@
 ﻿using BattleField;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -21,7 +22,7 @@ namespace Game
 
             Vector3Int cellPosition = new Vector3Int(0, 0, 0);
 
-            int range = 2;
+            int range = 3;
             Dictionary<Vector3Int, int> movableTiles = new Dictionary<Vector3Int, int>();
             movableTiles.Add(cellPosition, range);
             Map.GetCanReachTiles(tilemap, cellPosition, range, ref movableTiles);
@@ -36,15 +37,22 @@ namespace Game
             }
         }
 
+        public void ShowPath(Vector3Int startPosition, Vector3Int destPosition)
+        {
+            
+        }
+
         private void OnMouseOver()
         {
             if (Input.GetMouseButtonUp(1))
             {
                 Vector3 mousePosition = Input.mousePosition;
-                Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
-                Debug.Log(cellPosition + "cellPosition");
-            }
+                mousePosition.z = 1.0f;
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);
 
+                UIManager.Instance.ShowContextMenu(mousePosition, null);
+            }
         }
     }
 }

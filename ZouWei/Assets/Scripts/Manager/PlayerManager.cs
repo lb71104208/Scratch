@@ -23,7 +23,11 @@ namespace Game
         public void OnEnterScene(int sceneIndex)
         {
             _player = GameObject.FindObjectOfType<Player>();
-            _player.OnEnterScene(sceneIndex);
+            if(_player != null)
+            {
+                _player.OnEnterScene(sceneIndex);
+            }
+            
         }
     }
 
