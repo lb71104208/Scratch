@@ -206,6 +206,11 @@ namespace Algorithms
 				Update(index);
             }
         }
+
+        public bool Contains(T item)
+        {
+            return InnerList.Contains(item);
+        }
 		#endregion
     }
 }

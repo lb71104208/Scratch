@@ -1,4 +1,5 @@
-﻿using BattleField;
+﻿using Astar;
+using BattleField;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,17 @@ namespace Game
                 }      
             }
         }
+
+        public static void FindPath(Tilemap tilemap, Vector3Int startPoint, Vector3Int destPoint)
+        {
+            PathFinding.map = new Dictionary<Vector3Int, Node>();
+            foreach (MyTile tile in tilemap.GetTilesBlock(tilemap.cellBounds))
+            {
+                //Node node = new Node(tile.GetTileData()., tile.GetTileMoveConsume());
+            }
+            //List<Node> path = PathFinding.A_Star()
+        }
+
 
         private static List<Vector3Int> GetNextWalkableTiles(Tilemap tilemap, Vector3Int point)
         {

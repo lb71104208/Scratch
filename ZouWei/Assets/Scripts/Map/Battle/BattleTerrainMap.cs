@@ -53,6 +53,8 @@ namespace Game
 
                 UIManager.Instance.ShowContextMenu(mousePosition, null);
             }
+
+            
         }
     }
 }

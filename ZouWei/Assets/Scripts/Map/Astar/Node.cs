@@ -12,14 +12,16 @@ namespace Astar
     public class Node
     {
         public Node Parent;
-        public Vector2Int Position;
-        public float F; // F = G + H
-        public float G; // Total cost from the beginning
-        public float H; // Heuristic cost of remaining path to goal
+        public Vector3Int Position;
+        public int F; // F = G + H
+        public int G; // Total cost from the beginning
+        public int H; // Heuristic cost of remaining path to goal
+        public int moveCost;
 
-        public Node(Vector2Int pos)
+        public Node(Vector3Int pos, int move_cost)
         {
             Position = pos;
+            moveCost = move_cost;
         }
     }
 }
