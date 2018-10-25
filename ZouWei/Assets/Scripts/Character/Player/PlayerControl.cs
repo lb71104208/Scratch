@@ -78,7 +78,6 @@ namespace MainPlayer
                     _moveDirection = direction;
                     PlayMoveAnimation();
                 }
-
             }
 
             Move(h, v);

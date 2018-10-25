@@ -29,12 +29,13 @@ namespace Astar
         {
             List<Node> closedSet = new List<Node>();
             PriorityQueue<Node> openSet = new PriorityQueue<Node>(new SortNodeByFCost());
-            openSet.Push(start);
-
+          
             _cameFrom = new Dictionary<Node, Node>();
 
             start.G = 0;
             start.F = HeuristicCostEstimate(start, dest);
+
+            openSet.Push(start);
 
             while (openSet.Count > 0)
             {
@@ -48,6 +49,7 @@ namespace Astar
                 closedSet.Add(current);
 
                 List<Node> neighbourNodes = GetNeighbourNode(current);
+
                 foreach(Node neighbourNode in neighbourNodes)
                 {
                     if(closedSet.Contains(neighbourNode))
@@ -58,6 +60,8 @@ namespace Astar
                     int tentativeG = current.G + neighbourNode.moveCost;
                     if(!(openSet.Contains(neighbourNode)))
                     {
+                        neighbourNode.G = tentativeG;
+                        neighbourNode.F = neighbourNode.G + HeuristicCostEstimate(neighbourNode, dest);
                         openSet.Push(neighbourNode);
                     }
                     else if(tentativeG >= neighbourNode.G)

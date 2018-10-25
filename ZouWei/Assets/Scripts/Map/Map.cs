@@ -38,13 +38,18 @@ namespace Game
         public static void FindPath(Tilemap tilemap, Vector3Int startPoint, Vector3Int destPoint)
         {
             PathFinding.map = new Dictionary<Vector3Int, Node>();
-            foreach (MyTile tile in tilemap.GetTilesBlock(tilemap.cellBounds))
+            foreach (var position in tilemap.cellBounds.allPositionsWithin)
             {
-                //Node node = new Node(tile.GetTileData()., tile.GetTileMoveConsume());
+                MyTile tile = tilemap.GetTile<MyTile>(position);
+                Node node = new Node(position, tile.GetTileMoveConsume());
+                PathFinding.map.Add(position, node);
             }
-            //List<Node> path = PathFinding.A_Star()
+            List<Node> path = PathFinding.A_Star(PathFinding.map[startPoint], PathFinding.map[destPoint]);
+            foreach(Node node in path)
+            {
+                tilemap.SetColor(node.Position, new Color(1f, 0f, 0f, 1.0f));
+            }
         }
-
 
         private static List<Vector3Int> GetNextWalkableTiles(Tilemap tilemap, Vector3Int point)
         {

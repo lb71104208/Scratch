@@ -1,4 +1,5 @@
 ﻿using BattleField;
+using Common;
 using System.Collections;
 using System.Collections.Generic;
 using UI;
@@ -44,17 +45,29 @@ namespace Game
 
         private void OnMouseOver()
         {
+            //right click
             if (Input.GetMouseButtonUp(1))
             {
-                Vector3 mousePosition = Input.mousePosition;
-                mousePosition.z = 1.0f;
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-                Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);
-
-                UIManager.Instance.ShowContextMenu(mousePosition, null);
+                Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
+                Vector3Int screenPosition = Utils.Vector3ToVector3Int(Input.mousePosition);
+                screenPosition = screenPosition - new Vector3Int(Screen.width / 2, Screen.height / 2, 0);
+                UIManager.Instance.ShowContextMenu(screenPosition, null);
             }
 
-            
+            //left click
+            if(Input.GetMouseButtonUp(0))
+            {
+                Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
+                Map.FindPath(tilemap, Vector3Int.zero, cellPosition);
+            }
+        }
+
+        private Vector3Int MousePositionToCellPosition(Vector3 mousePosition)
+        {
+            mousePosition.z = 1.0f;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);
+            return cellPosition;
         }
     }
 }
