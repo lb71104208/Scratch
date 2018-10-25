@@ -9,7 +9,7 @@ namespace Game
 
         public override void OnEnter()
         {
-
+            BattleManager.Instance.Initialize();
         }
     }
 }

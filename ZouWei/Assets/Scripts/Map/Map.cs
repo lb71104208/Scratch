@@ -35,7 +35,7 @@ namespace Game
             }
         }
 
-        public static void FindPath(Tilemap tilemap, Vector3Int startPoint, Vector3Int destPoint)
+        public static List<Vector3Int> FindPath(Tilemap tilemap, Vector3Int startPoint, Vector3Int destPoint)
         {
             PathFinding.map = new Dictionary<Vector3Int, Node>();
             foreach (var position in tilemap.cellBounds.allPositionsWithin)
@@ -44,11 +44,13 @@ namespace Game
                 Node node = new Node(position, tile.GetTileMoveConsume());
                 PathFinding.map.Add(position, node);
             }
-            List<Node> path = PathFinding.A_Star(PathFinding.map[startPoint], PathFinding.map[destPoint]);
-            foreach(Node node in path)
+            List<Node> pathNode = PathFinding.A_Star(PathFinding.map[startPoint], PathFinding.map[destPoint]);
+            List<Vector3Int> pathPos = new List<Vector3Int>();
+            foreach (Node node in pathNode)
             {
-                tilemap.SetColor(node.Position, new Color(1f, 0f, 0f, 1.0f));
+                pathPos.Add(node.Position);
             }
+            return pathPos;
         }
 
         private static List<Vector3Int> GetNextWalkableTiles(Tilemap tilemap, Vector3Int point)
