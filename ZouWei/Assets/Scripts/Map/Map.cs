@@ -37,6 +37,7 @@ namespace Game
 
         public static List<Vector3Int> FindPath(Tilemap tilemap, Vector3Int startPoint, Vector3Int destPoint)
         {
+            //construct PathFinding map
             PathFinding.map = new Dictionary<Vector3Int, Node>();
             foreach (var position in tilemap.cellBounds.allPositionsWithin)
             {
@@ -44,6 +45,8 @@ namespace Game
                 Node node = new Node(position, tile.GetTileMoveConsume());
                 PathFinding.map.Add(position, node);
             }
+            
+            //find path
             List<Node> pathNode = PathFinding.A_Star(PathFinding.map[startPoint], PathFinding.map[destPoint]);
             List<Vector3Int> pathPos = new List<Vector3Int>();
             foreach (Node node in pathNode)

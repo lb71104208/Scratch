@@ -13,6 +13,7 @@ namespace Game
         private void Start()
         {
             ShowActorCanReachTiles(null);
+            BattleManager.Instance.RegistMap(EMap.BattleTerrainMap, this);
         }
 
         public void ShowActorCanReachTiles(Actor actor)

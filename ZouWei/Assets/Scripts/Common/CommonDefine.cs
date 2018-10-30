@@ -6,6 +6,19 @@
         City,
         Battle
     }
+    public enum ActorState
+    {
+        Active,
+        Moving,
+        Attacking,
+        Consumed
+    }
+
+    public enum EMap
+    {
+        BattleTerrainMap
+    }
+
 
     public class CommonDefine
     {
