@@ -57,9 +57,17 @@ namespace BattleField
         private bool ReachTile(EMap mapType, Vector3Int cellPosition)
         {
             Tilemap map = BattleManager.Instance.tilemapDic[mapType].tilemap;
-            Vector3 tileWorldPos = map.CellToWorld(cellPosition);
+            Vector3 tileWorldPos = map.CellToWorld(cellPosition) + map.cellSize/2;
             Vector3 actorWorldPos = transform.position;
-            return tileWorldPos == actorWorldPos;
+            if(tileWorldPos == actorWorldPos)
+            {
+                transform.position = tileWorldPos;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void Update()
@@ -79,14 +87,27 @@ namespace BattleField
                 {
                     if(ReachTile(EMap.BattleTerrainMap, _nextPosition))
                     {
-
+                        _currentMoveTargetIndex++;
+                        _nextPosition = _movePath[_currentMoveTargetIndex];
+                        MoveToTile(EMap.BattleTerrainMap, _nextPosition);
                     }
                     else
                     {
-
+                        MoveToTile(EMap.BattleTerrainMap, _nextPosition);
                     }
                 }
             }
+        }
+
+        private void MoveToTile(EMap mapType, Vector3Int tilePos)
+        {
+            Tilemap map = BattleManager.Instance.tilemapDic[mapType].tilemap;
+            Vector3 tileWorldPos = map.CellToWorld(tilePos)+map.cellSize/2;
+            Vector3 actorWorldPos = transform.position;
+
+            Vector3 dir = tileWorldPos - actorWorldPos;
+            actorWorldPos += dir.normalized * Time.deltaTime;
+            transform.position = actorWorldPos;
         }
     }
 }

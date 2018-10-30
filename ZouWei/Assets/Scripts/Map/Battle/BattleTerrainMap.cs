@@ -60,7 +60,7 @@ namespace Game
             {
                 Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
                 List<Vector3Int> path = Map.FindPath(tilemap, Vector3Int.zero, cellPosition);
-                //BattleManager.Instance.actorPlayer
+                BattleManager.Instance.actorPlayer.BeginMove(path);
             }
         }
 
