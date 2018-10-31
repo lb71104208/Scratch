@@ -19,6 +19,7 @@ namespace BattleField
 
         private float _moveSpeed = 5.0f;
         private BattleTerrainMap _battleMap;
+        private float _moveTimer;
 
         // Use this for initialization
 
@@ -37,6 +38,7 @@ namespace BattleField
                 _currentMoveTargetIndex = 1;
                 _nextPosition = path[_currentMoveTargetIndex];
                 _destination = path[path.Count - 1];
+                _moveTimer = 0;
             }
         }
 
@@ -89,6 +91,7 @@ namespace BattleField
                     {
                         _currentMoveTargetIndex++;
                         _nextPosition = _movePath[_currentMoveTargetIndex];
+                        _moveTimer = 0;
                         MoveToTile(EMap.BattleTerrainMap, _nextPosition);
                     }
                     else
@@ -104,10 +107,9 @@ namespace BattleField
             Tilemap map = BattleManager.Instance.tilemapDic[mapType].tilemap;
             Vector3 tileWorldPos = map.CellToWorld(tilePos)+map.cellSize/2;
             Vector3 actorWorldPos = transform.position;
+            _moveTimer += Time.deltaTime * _moveSpeed;
 
-            Vector3 dir = tileWorldPos - actorWorldPos;
-            actorWorldPos += dir.normalized * Time.deltaTime;
-            transform.position = actorWorldPos;
+            transform.position = Vector3.Lerp(actorWorldPos, tileWorldPos, _moveTimer);
         }
     }
 }
