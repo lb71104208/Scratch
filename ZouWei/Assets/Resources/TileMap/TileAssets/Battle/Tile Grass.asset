@@ -34,4 +34,4 @@ MonoBehaviour:
   m_Flags: 0
   m_ColliderType: 1
   replaceSprite: {fileID: 0}
-  tileType: 1
+  tileType: 2

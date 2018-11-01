@@ -40,6 +40,9 @@ namespace BattleField
             Vector3Int currentCellPos = GetActorTilePositionOnMap(EMap.BattleTerrainMap);
             if(currentCellPos == path[0])
             {
+                Vector3 nextDirection = _movePath[1] - _movePath[0];
+                _actorMotion.MoveDirection(nextDirection.x, nextDirection.y);
+
                 _currentMoveTargetIndex = 1;
                 _nextPosition = path[_currentMoveTargetIndex];
                 _destination = path[path.Count - 1];
@@ -97,10 +100,7 @@ namespace BattleField
                         Vector3 nextDirection = _movePath[_currentMoveTargetIndex + 1] - _movePath[_currentMoveTargetIndex];
                         _actorMotion.MoveDirection(nextDirection.x, nextDirection.y);
 
-                        _currentMoveTargetIndex++;
-                        _nextPosition = _movePath[_currentMoveTargetIndex];
-                        _moveTimer = 0;
-                        MoveToTile(EMap.BattleTerrainMap, _nextPosition);
+                        MoveToNextPoint();
                     }
                     else
                     {
@@ -118,7 +118,10 @@ namespace BattleField
 
         private void MoveToNextPoint()
         {
-
+            _currentMoveTargetIndex++;
+            _nextPosition = _movePath[_currentMoveTargetIndex];
+            _moveTimer = 0;
+            MoveToTile(EMap.BattleTerrainMap, _nextPosition);
         }
 
         private void MoveToTile(EMap mapType, Vector3Int tilePos)

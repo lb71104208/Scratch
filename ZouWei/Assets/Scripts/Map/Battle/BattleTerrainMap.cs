@@ -59,7 +59,8 @@ namespace Game
             if(Input.GetMouseButtonUp(0))
             {
                 Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
-                List<Vector3Int> path = Map.FindPath(tilemap, Vector3Int.zero, cellPosition);
+                Vector3Int playerPosition = tilemap.WorldToCell(BattleManager.Instance.actorPlayer.transform.position);
+                List<Vector3Int> path = Map.FindPath(tilemap, playerPosition, cellPosition);
                 BattleManager.Instance.actorPlayer.BeginMove(path);
             }
         }
