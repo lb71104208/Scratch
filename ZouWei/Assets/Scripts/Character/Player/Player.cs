@@ -4,11 +4,12 @@ using Common;
 
 namespace MainPlayer
 {
-    public class Player : MonoBehaviour
+    public class Player : Character.Character
     {
 
         private PlayerControl _playerControl;
         private PlayerProperty _playerProperty;
+        private CharacterMotion _playerMotion;
 
         public int CurrentStamina
         {
@@ -28,6 +29,7 @@ namespace MainPlayer
         {
             _playerControl = GetComponent<PlayerControl>();
             _playerProperty = GetComponent<PlayerProperty>();
+            _playerMotion = GetComponent<CharacterMotion>();
         }
         // Use this for initialization
         void Start()
@@ -36,7 +38,7 @@ namespace MainPlayer
             _distanceCounter = 0;
         }
 
-        public void ConsumeStamina(float distance)
+        public override void ConsumeStamina(float distance)
         {
             if(IsRunOutOfStamina())
             {
@@ -58,7 +60,7 @@ namespace MainPlayer
 
         private void OnRunOutOfStamina()
         {
-            _playerControl.Stop();
+            _playerMotion.Stop();
         }
 
         public bool IsRunOutOfStamina()

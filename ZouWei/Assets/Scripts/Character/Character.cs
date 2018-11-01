@@ -6,7 +6,10 @@ namespace Character
 {
     public class Character : MonoBehaviour
     {
+        public virtual void ConsumeStamina(float distance)
+        {
 
+        }
     }
 }
 

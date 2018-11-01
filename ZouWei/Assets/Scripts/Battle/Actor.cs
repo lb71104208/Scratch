@@ -21,7 +21,12 @@ namespace BattleField
         private BattleTerrainMap _battleMap;
         private float _moveTimer;
 
-        // Use this for initialization
+        private CharacterMotion _actorMotion;
+
+        private void Awake()
+        {
+            _actorMotion = GetComponent<CharacterMotion>();
+        }
 
         private void GetMovableArea()
         {
@@ -83,12 +88,15 @@ namespace BattleField
             {
                 if(ReachTile(EMap.BattleTerrainMap, _destination))
                 {
-                    _actorState = ActorState.Consumed;
+                    OnReachDestination();
                 }
                 else
                 {
                     if(ReachTile(EMap.BattleTerrainMap, _nextPosition))
                     {
+                        Vector3 nextDirection = _movePath[_currentMoveTargetIndex + 1] - _movePath[_currentMoveTargetIndex];
+                        _actorMotion.MoveDirection(nextDirection.x, nextDirection.y);
+
                         _currentMoveTargetIndex++;
                         _nextPosition = _movePath[_currentMoveTargetIndex];
                         _moveTimer = 0;
@@ -100,6 +108,17 @@ namespace BattleField
                     }
                 }
             }
+        }
+
+        private void OnReachDestination()
+        {
+            _actorMotion.Stop();
+            _actorState = ActorState.Consumed;
+        }
+
+        private void MoveToNextPoint()
+        {
+
         }
 
         private void MoveToTile(EMap mapType, Vector3Int tilePos)

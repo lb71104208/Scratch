@@ -19,6 +19,21 @@
         BattleTerrainMap
     }
 
+    public enum EPlayerMoveDirection
+    {
+        NONE = 0,
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    }
+
+    enum EPlayerControlMode
+    {
+        KEYBOARD,
+        MOUSE
+    }
+
 
     public class CommonDefine
     {
