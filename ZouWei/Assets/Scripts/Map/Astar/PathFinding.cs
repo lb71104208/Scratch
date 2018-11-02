@@ -45,7 +45,7 @@ namespace Astar
                     return ConstructPath(_cameFrom, current);
                 }
 
-                openSet.RemoveLocation(current);
+                //openSet.RemoveLocation(current);
                 closedSet.Add(current);
 
                 List<Node> neighbourNodes = GetNeighbourNode(current);

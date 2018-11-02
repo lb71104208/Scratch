@@ -28,12 +28,11 @@
         DOWN
     }
 
-    enum EPlayerControlMode
+    public enum EPlayerControlMode
     {
         KEYBOARD,
         MOUSE
     }
-
 
     public class CommonDefine
     {

@@ -31,7 +31,7 @@ namespace Algorithms
     public class PriorityQueue<T> : IPriorityQueue<T>
     {
         #region Variables Declaration
-        protected List<T>       InnerList = new List<T>();
+        public List<T> InnerList = new List<T>();
 		protected IComparer<T>  mComparer;
         #endregion
 

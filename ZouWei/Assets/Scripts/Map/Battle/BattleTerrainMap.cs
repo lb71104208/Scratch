@@ -12,16 +12,12 @@ namespace Game
     {
         private void Start()
         {
-            ShowActorCanReachTiles(null);
             BattleManager.Instance.RegistMap(EMap.BattleTerrainMap, this);
+            Map.InitPathFindingMap(tilemap);
         }
 
         public void ShowActorCanReachTiles(Actor actor)
         {
-            //Vector3 position = actor.transform.position;
-            //Vector3Int cellPosition = tilemap.WorldToCell(position);
-            //tilemap.SetTile(cellPosition, _myTile);
-
             Vector3Int cellPosition = new Vector3Int(0, 0, 0);
 
             int range = 3;
@@ -56,13 +52,22 @@ namespace Game
             }
 
             //left click
-            if(Input.GetMouseButtonUp(0))
-            {
-                Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
-                Vector3Int playerPosition = tilemap.WorldToCell(BattleManager.Instance.actorPlayer.transform.position);
-                List<Vector3Int> path = Map.FindPath(tilemap, playerPosition, cellPosition);
-                BattleManager.Instance.actorPlayer.BeginMove(path);
-            }
+            //if(Input.GetMouseButtonUp(0))
+            //{
+            //    Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
+            //    Vector3Int playerPosition = tilemap.WorldToCell(BattleManager.Instance.actorPlayer.transform.position);
+            //    List<Vector3Int> path = Map.FindPath(tilemap, playerPosition, cellPosition);
+            //    //List<Vector3Int> path = Map.FindPath(tilemap, cellPosition, Vector3Int.zero);
+            //    BattleManager.Instance.actorPlayer.BeginMove(path);
+            //    //foreach (Vector3Int cell in path)
+            //    //{
+            //    //    Tile tile = tilemap.GetTile<Tile>(cell);
+            //    //    if (tile != null)
+            //    //    {
+            //    //        tilemap.SetColor(cell, new Color(0f, 1f, 0f, 0.5f));
+            //    //    }
+            //    //}
+            //}
         }
 
         private Vector3Int MousePositionToCellPosition(Vector3 mousePosition)

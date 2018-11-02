@@ -4,17 +4,19 @@ using UnityEngine;
 
 namespace UI
 {
+    public class UIContextMenuItemData
+    {
+       
+    }
+
     public class UIContextMenu : UIBase
     {
-
-        // Use this for initialization
-        void Start()
+        public override void FillData(object data)
         {
 
         }
 
-        // Update is called once per frame
-        void Update()
+        protected virtual void FillMenuItemCells()
         {
 
         }
