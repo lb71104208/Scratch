@@ -15,7 +15,7 @@ namespace UI
 
         public virtual void OnCreate()
         {
-
+            
         }
 
         public virtual void FillData(object data)

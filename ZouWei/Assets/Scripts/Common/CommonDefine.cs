@@ -34,6 +34,13 @@
         MOUSE
     }
 
+    public enum EBattleActionType
+    {
+        Move,
+        Attack,
+        End_Turn
+    }
+
     public class CommonDefine
     {
        

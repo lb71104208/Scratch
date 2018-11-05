@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using Common;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace UI
 {
@@ -9,7 +7,18 @@ namespace UI
     {
         public List<UIContextMenuItemData> GetMenuItemData()
         {
-            throw new NotImplementedException();
+            List<UIContextMenuItemData> list = new List<UIContextMenuItemData>();
+
+            UIContextMenuItemData data = new UIContextMenuItemData(EBattleActionType.Move);
+            list.Add(data);
+
+            data = new UIContextMenuItemData(EBattleActionType.Attack);
+            list.Add(data);
+
+            data = new UIContextMenuItemData(EBattleActionType.End_Turn);
+            list.Add(data);
+
+            return list;
         }
     }
 }
