@@ -10,10 +10,11 @@ namespace UI
         public GameObject cellPrefab;
         private ScrollRect _scrollRect;
 
-        private void Start()
+        public override void OnCreate()
         {
             _scrollRect = GetComponent<ScrollRect>();
         }
+
 
         public override void FillData(object data)
         {
