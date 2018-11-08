@@ -16,18 +16,11 @@ namespace Game
             Map.InitPathFindingMap(tilemap);
         }
 
-        public void ShowActorCanReachTiles(Actor actor)
+        public void ShowActorCanReachTiles(Dictionary<Vector3Int, int> movableTiles)
         {
-            Vector3Int cellPosition = new Vector3Int(0, 0, 0);
-
-            int range = 3;
-            Dictionary<Vector3Int, int> movableTiles = new Dictionary<Vector3Int, int>();
-            movableTiles.Add(cellPosition, range);
-            Map.GetCanReachTiles(tilemap, cellPosition, range, ref movableTiles);
-
             foreach(Vector3Int point in movableTiles.Keys)
             {
-                Tile tile = tilemap.GetTile<Tile>(cellPosition);
+                Tile tile = tilemap.GetTile<Tile>(point);
                 if (tile != null)
                 {
                     tilemap.SetColor(point, new Color(1f, 1f, 1f, 0.5f));

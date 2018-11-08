@@ -18,7 +18,7 @@ namespace UI
             _actorPlayer = actorPlayer;
         }
 
-        public void OnRequestMoveRange()
+        public void OnRequestMoveRange(object data)
         {
             ActionRequestMoveRange requestMoveAction = new ActionRequestMoveRange(_actorPlayer, null, EBattleActionType.Move);
             requestMoveAction.Execute();
@@ -28,13 +28,13 @@ namespace UI
         {
             List<UIContextMenuItemData> list = new List<UIContextMenuItemData>();
 
-            UIContextMenuItemData data = new UIContextMenuItemData(EBattleActionType.Move);
+            UIContextMenuItemData data = new UIContextMenuItemData(EBattleActionType.Move, OnRequestMoveRange);
             list.Add(data);
 
-            data = new UIContextMenuItemData(EBattleActionType.Attack);
+            data = new UIContextMenuItemData(EBattleActionType.Attack, null);
             list.Add(data);
 
-            data = new UIContextMenuItemData(EBattleActionType.End_Turn);
+            data = new UIContextMenuItemData(EBattleActionType.End_Turn, null);
             list.Add(data);
 
             return list;

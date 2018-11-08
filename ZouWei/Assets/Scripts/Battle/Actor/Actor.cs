@@ -28,9 +28,16 @@ namespace BattleField
             _actorMotion = GetComponent<CharacterMotion>();
         }
 
-        private void GetMovableArea()
+        public Dictionary<Vector3Int, int> GetMovableArea(EMap mapType)
         {
+            Tilemap map = BattleManager.Instance.tilemapDic[mapType].tilemap;
+            Vector3Int cellPosition = new Vector3Int(0, 0, 0);
+            
+            Dictionary<Vector3Int, int> movableTiles = new Dictionary<Vector3Int, int>();
+            movableTiles.Add(cellPosition, moveRange);
+            Map.GetCanReachTiles(map, cellPosition, moveRange, ref movableTiles);
 
+            return movableTiles;
         }
 
         public void BeginMove(List<Vector3Int> path)
