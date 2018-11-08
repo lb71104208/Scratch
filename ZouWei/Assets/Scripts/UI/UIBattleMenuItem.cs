@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Common;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,10 +9,25 @@ namespace UI
     public class UIBattleMenuItem : MonoBehaviour
     {
         public Text actionText;
+        public Button actionBtn;
+
+        private EBattleActionType _actionType;
+
+        private void Awake()
+        {
+            actionBtn.onClick.AddListener(OnActionBtnClick);
+        }
 
         public void FillData(UIContextMenuItemData data)
         {
             actionText.text = data.actionString;
         }
+
+        private void OnActionBtnClick()
+        {
+
+        }
+
+        
     }
 }

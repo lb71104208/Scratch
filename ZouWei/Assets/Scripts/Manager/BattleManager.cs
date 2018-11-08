@@ -27,6 +27,11 @@ namespace BattleField
                 tilemapDic.Add(mapType, map);
             }
         }
+
+        public void ProcessAction(EBattleActionType actionType)
+        {
+
+        }
     }
 }
 
