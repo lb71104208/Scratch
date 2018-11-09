@@ -1,7 +1,6 @@
 ﻿using Common;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI
@@ -12,6 +11,7 @@ namespace UI
         public Button actionBtn;
 
         private EBattleActionType _actionType;
+        private UnityAction<object> _actionListener;
 
         private void Awake()
         {
@@ -21,11 +21,12 @@ namespace UI
         public void FillData(UIContextMenuItemData data)
         {
             actionText.text = data.actionString;
+            _actionListener = data.actionListener;
         }
 
         private void OnActionBtnClick()
         {
-
+            _actionListener(null);
         }
 
         

@@ -8,13 +8,13 @@ namespace UI
     {
         private Dictionary<string, string> _uiPrefabPathDic;
         private Transform _canvas;
-        private List<string> _openedUIList;
+        private Dictionary<string, UIBase> _openedUIDic;
 
         public void Initialize()
         {
             _uiPrefabPathDic = new Dictionary<string, string>();
             _canvas = Object.FindObjectOfType<Canvas>().transform;
-            _openedUIList = new List<string>();
+            _openedUIDic = new Dictionary<string, UIBase>();
 
             RegistUIPrefabPath();
         }
@@ -28,7 +28,7 @@ namespace UI
 
         public void OpenUI(string uiName, object data = null)
         {
-            if(_openedUIList.Contains(uiName))
+            if(_openedUIDic.ContainsKey(uiName))
             {
                 return;
             }
@@ -43,8 +43,9 @@ namespace UI
             ui.OnCreate();
             ui.RegistObserver();
             ui.FillData(data);
+            ui.UIName = uiName;
 
-            _openedUIList.Add(uiName);
+            _openedUIDic.Add(uiName, ui);
         }
 
         private GameObject LoadUI(string path)
@@ -57,7 +58,7 @@ namespace UI
         public void ShowContextMenu(Vector3 position,  object data)
         {
             string uiName = UIName.UI_CONTEXT_MENU;
-            if (_openedUIList.Contains(uiName))
+            if (_openedUIDic.ContainsKey(uiName))
             {
                 return;
             }
@@ -72,7 +73,17 @@ namespace UI
             ui.RegistObserver();
             ui.FillData(data);
 
-            _openedUIList.Add(uiName);
+            _openedUIDic.Add(uiName, ui);
+        }
+
+        public void CloseUI(string uiName)
+        {
+            if(_openedUIDic.ContainsKey(uiName))
+            {
+                _openedUIDic[uiName].OnClose();
+                Destroy(_openedUIDic[uiName]);
+                _openedUIDic.Remove(uiName);
+            }
         }
     }
 }

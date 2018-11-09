@@ -41,7 +41,7 @@ namespace Game
                 Vector3Int cellPosition = MousePositionToCellPosition(Input.mousePosition);
                 Vector3Int screenPosition = Utils.Vector3ToVector3Int(Input.mousePosition);
                 screenPosition = screenPosition - new Vector3Int(Screen.width / 2, Screen.height / 2, 0);
-                UIManager.Instance.ShowContextMenu(screenPosition, new BattleActorPlayerContext());
+                UIManager.Instance.ShowContextMenu(screenPosition, new BattleActorPlayerContext((ActorPlayer)BattleManager.Instance.actorPlayer));
             }
 
             //left click
